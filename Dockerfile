@@ -8,13 +8,9 @@ ARG GID=1000
 # Install packages required to build
 RUN apt update && apt -y install wget jq
 
-# Download Waterfall: waterfall.jar
+# Retrieve Waterfall: waterfall.jar
 ADD ./download-waterfall.sh /build/
 RUN /build/download-waterfall.sh
-
-# Replace messages.properties inside the Waterfall jar file
-ADD ./messages.properties /build/
-RUN jar -uf /build/waterfall.jar -C ./ /build/messages.properties
 
 FROM eclipse-temurin:17.0.2_8-jre-alpine AS runner
 
