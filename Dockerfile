@@ -6,7 +6,7 @@ ARG UID=1000
 ARG GID=1000
 
 # Install packages required to build
-RUN apt -y install wget jq
+RUN apt update && apt -y install wget jq
 
 # Download Waterfall: waterfall.jar
 ADD ./download-waterfall.sh /build/
