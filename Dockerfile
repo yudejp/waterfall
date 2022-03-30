@@ -14,7 +14,7 @@ RUN /build/download-waterfall.sh
 
 # Replace messages.properties inside the Waterfall jar file
 ADD ./messages.properties /build/
-RUN jar -uf /build/waterfall.jar -C ./ messages.properties
+RUN jar -uf /build/waterfall.jar -C ./ /build/messages.properties
 
 FROM eclipse-temurin:17.0.2_8-jre-alpine AS runner
 
