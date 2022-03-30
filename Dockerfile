@@ -1,4 +1,4 @@
-FROM alpine:latest AS builder
+FROM openjdk:slim-buster AS builder
 
 ARG USERNAME=app
 ARG GROUPNAME=app
@@ -12,7 +12,11 @@ RUN apk add --no-cache wget jq
 ADD ./download-waterfall.sh /build/
 RUN /build/download-waterfall.sh
 
-FROM eclipse-temurin:17.0.2_8-jre-alpine
+# Replace messages.properties inside the Waterfall jar file
+ADD ./messages.properties /build/
+RUN jar -uf /build/waterfall.jar -C ./ messages.properties
+
+FROM eclipse-temurin:17.0.2_8-jre-alpine AS runner
 
 # Set timezone to Asia/Tokyo
 RUN apk --update add tzdata && \
