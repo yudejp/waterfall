@@ -10,6 +10,7 @@ RUN apt update && apt -y install wget jq
 
 # Retrieve Waterfall: waterfall.jar
 ADD ./download-waterfall.sh /build/
+ADD ./messages.properties /build/
 RUN /build/download-waterfall.sh
 
 FROM eclipse-temurin:17.0.2_8-jre-alpine AS runner

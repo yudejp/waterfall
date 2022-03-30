@@ -14,4 +14,4 @@ URL=${URL}/builds/${BUILD}/downloads/${JAR_NAME}
 wget ${URL} -O waterfall.jar
 
 # Replace messages.properties inside the Waterfall jar file
-jar -uf waterfall.jar -C ./ messages.properties
+jar -uf waterfall.jar -C ./ ./messages.properties
